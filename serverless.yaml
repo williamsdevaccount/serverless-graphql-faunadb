@@ -1,0 +1,53 @@
+service: "serverless-graphql-blog"
+plugins:
+  - serverless-webpack
+provider:
+  name: "aws"
+  stage: "dev"
+  environment:
+    FAUNADB_SECRET: SERVER_SECRET_FOR_YOUR_FAUNADB_DATABASE
+
+functions:
+  setupFaunaDB:
+    handler: index.setupFaunaDB
+    include:
+      - blog/
+      - index.js
+    custom:
+      excludePatterns: []
+      optimize:
+        exclude:
+          - "aws-sdk"
+        transforms:
+          -
+            name: "babelify"
+            opts:
+              presets:
+                - "es2015"
+  sadiavas:
+    handler: index.graphql
+    include:
+      - blog/
+      - index.js
+    events:
+      - http:
+          path: "blog/graphql"
+          method: "POST"
+
+    custom:
+      excludePatterns: []
+      optimize:
+        exclude:
+          - "aws-sdk"
+        transforms:
+          -
+            name: "babelify"
+            opts:
+              presets:
+                - "es2015"
+
+defaults:
+  stage: "dev"
+  region: "us-west-2"
+  memory: 1024
+  timeout: 6
