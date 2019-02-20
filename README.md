@@ -1,6 +1,6 @@
 ![Serverless GraphQL Blog AWS Lambda API Gateway](serverless_graphql_blog.png)
 
-[![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
+[![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com) [![Greenkeeper badge](https://badges.greenkeeper.io/williamsdevaccount/serverless-graphql-faunadb.svg)](https://greenkeeper.io/)
 
 # serverless-graphql-blog
 
